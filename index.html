@@ -4,9 +4,211 @@ layout: default
 
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>自己紹介 - ryu-lea (dev-ryu-lea)</title>
+ <style>
+  body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   margin: 0;
+   padding: 20px;
+   line-height: 1.6;
+   background-color: #f0f2f5;
+   color: #333;
+  }
+  .container {
+   max-width: 900px;
+   margin: 20px auto;
+   background-color: #ffffff;
+   padding: 40px;
+   border-radius: 10px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  h1, h2, h3 {
+   color: #2c3e50;
+   margin-bottom: 15px;
+  }
+  h1 {
+   font-size: 2.5em;
+   text-align: center;
+   margin-bottom: 25px;
+  }
+  h2 {
+   font-size: 1.8em;
+   border-bottom: 2px solid #e0e0e0;
+   padding-bottom: 10px;
+   margin-top: 30px;
+  }
+  h3 {
+   font-size: 1.4em;
+   color: #34495e;
+  }
+  blockquote {
+   background-color: #e8f0fe;
+   border-left: 5px solid #3498db;
+   margin: 20px 0;
+   padding: 15px 20px;
+   font-style: italic;
+   color: #555;
+   border-radius: 5px;
+  }
+  ul {
+   list-style: disc;
+   margin-left: 25px;
+   padding-left: 0;
+  }
+  li {
+   margin-bottom: 8px;
+  }
+  strong {
+   color: #e74c3c; /* 強調色 */
+  }
+  table {
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+  }
+  th, td {
+   border: 1px solid #ddd;
+   padding: 12px;
+   text-align: left;
+  }
+  th {
+   background-color: #f2f2f2;
+   font-weight: bold;
+  }
+  a {
+   color: #3498db;
+   text-decoration: none;
+  }
+  a:hover {
+   text-decoration: underline;
+  }
+  .image-placeholder {
+   background-color: #f9f9f9;
+   border: 1px dashed #ccc;
+   padding: 30px;
+   text-align: center;
+   color: #666;
+   margin-top: 20px;
+   border-radius: 5px;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: #000; /* Video background */
+    border-radius: 8px;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove iframe border */
+  }
+  hr {
+   border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+   margin: 40px 0;
+  }
+ </style>
+</head>
 <body>
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+ <div class="container">
+  <h1>こんにちは、dev-ryu-lea です！</h1> <blockquote>RoboCup出場経験があり、チーム開発の経験が豊富です。</blockquote>
+
+  <p>私はロボティクス分野に情熱を燃やす開発者です。特に、チームで協力しながら複雑な問題を解決し、具体的な成果を出すことに喜びを感じます。</p>
+
+  <hr>
+
+  <h2>技術</h2>
+  <p>強調したい技術は<strong>太字</strong>で表示します。</p>
+  <ul>
+   <li><strong>Python</strong> (特にロボット制御関連)</li>
+   <li>ROS 2 (Robot Operating System 2) - HSR (Human Support Robot)の開発で使用</li>
+   <li>Git/GitHub (バージョン管理)</li>
+  </ul>
+
+  <hr>
+
+  <h2>成果物</h2>
+
+  <h3>1. RoboCup出場プロジェクト</h3>
+  <p>RoboCupにおける私の主要な役割は、物体認識モジュールの開発でした。<br>具体的な内容は以下の通りです。</p>
+  <ul>
+   <li><strong>ROS 2ベースの物体認識システム</strong>:
+    <ul>
+     <li>目的: ロボットが特定の物体を認識し、把持、または認識できるようにするため。</li>
+     <li>使用技術: <code>OpenCV</code>、<code>TensorFlow Lite</code>、<code>Yolo</code>、<code>Open3d</code></li>
+    </ul>
+   </li>
+   <li>成果物の画像:
+    <div class="image-placeholder">
+     <p>今後許可が下り次第掲載していく予定です</p>
+    </div>
+   </li>
+  </ul>
+
+  <h3>RoboCup出場時の動画 (例)</h3>
+  <p>RoboCupでのHSRの動きや、物体認識システムの動作を示す動画をここに埋め込むことができます。</p>
+  <div class="video-container">
+   <iframe src="https://www.youtube.com/watch?v=5ftRRjnZvY0&t=5201s" title="Placeholder Video - Replace with your actual video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+
+  <h3>2. その他のプロジェクト</h3>
+  <table>
+   <thead>
+    <tr>
+     <th>プロジェクト名</th>
+     <th>使用技術</th>
+     <th>概要</th>
+     <th>リンク</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Voice-chatbot</td>
+     <td>Python</td>
+     <td>仮想環境での自動運転アルゴリズム開発</td>
+     <td><a href="https://github.com/dev-ryu-lea/voice-chatbot" target="_blank">GitHub</a></td>
+    </tr>
+   </tbody>
+  </table>
+
+  <hr>
+
+  <h2>経験</h2>
+
+  <h3>RoboCup出場経験によるチーム開発</h3>
+  <p>RoboCup出場を通じて、私は実践的なチーム開発の経験を積みました。<br>具体的には、以下の点に貢献しました。</p>
+  <ul>
+   <li><strong>役割</strong>: HSRの物体認識</li>
+   <li><strong>開発期間</strong>: 学部2年6月～3年5月 (1年間)</li>
+   <li><strong>貢献内容</strong>:
+    <ul>
+     <li>プロジェクトの進捗管理とタスク分担</li>
+     <li>ROS 2を用いたモジュール間の連携設計</li>
+     <li>定期的なコードレビューと品質管理</li>
+     <li>問題発生時の迅速なトラブルシューティング</li>
+    </ul>
+   </li>
+  </ul>
+
+  <hr>
+
+  <h2>質問はこちらから</h2>
+  <p>何かご質問があれば、お気軽にお尋ねください。特に、RoboCupでの具体的な課題解決方法や、HSR開発におけるROS 2の活用方法などについて詳しくお話しできます。</p>
+
+ </div>
 </body>
 </html>
