@@ -34,7 +34,7 @@ RoboCupにおける私の主要な役割は、物体認識モジュールの開�
 
 | プロジェクト名       | 使用技術      | 概要                                         | リンク                                       |
 | :------------------- | :------------ | :------------------------------------------- | :------------------------------------------- |
-| Voice-chatbot | Python | 仮想環境での自動運転アルゴリズム開発         | [GitHub](https://github.com/dev-ryu-lea/voice-chatbot)   |
+| Voice-chatbot | Python | 仮想環境での音声認識によるチャットボット作成       | [GitHub](https://github.com/dev-ryu-lea/voice-chatbot)   |
 
 ---
 
