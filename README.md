@@ -8,7 +8,7 @@
 
 ## 技術
 
-強調したい技術は**太字**で表示します。
+
 
 * **Python** (特にロボット制御関連)
 * ROS 2 (Robot Operating System 2) - HSR (Human Support Robot)の開発で使用
