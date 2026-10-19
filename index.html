@@ -65,7 +65,11 @@
       content: ""; position: absolute; z-index: -1; inset: 0;
       background: linear-gradient(0deg, rgba(8,15,25,.52), transparent 40%, rgba(8,15,25,.12));
     }
-    .hero-inner { width: 100%; padding: 66px 0 70px; }
+    .hero-inner {
+      width: min(var(--content), calc(100% - 64px));
+      margin-inline: auto;
+      padding: 66px 0 70px;
+    }
     .hero-copy { max-width: 570px; animation: riseIn .8s .12s both; }
     .hello { margin: 0 0 12px; color: var(--blue); font-size: .85rem; letter-spacing: .08em; }
     h1 { font-size: clamp(2.25rem, 5vw, 3.7rem); line-height: 1.28; letter-spacing: .015em; font-weight: 560; margin: 0 0 22px; }
