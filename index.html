@@ -41,6 +41,7 @@
     .nav-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
     .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 650; }
     .nav-links a:hover { color: var(--blue); }
+    .language-toggle { border: 1px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px; padding: 7px 12px; font: inherit; font-size: .8rem; font-weight: 750; cursor: pointer; white-space: nowrap; }
     .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 8px 12px; color: var(--ink); font: inherit; }
     .hero { padding: clamp(64px, 8vw, 112px) 0 clamp(56px, 7vw, 88px); overflow: hidden; }
     .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: clamp(36px, 6vw, 88px); align-items: center; }
@@ -165,7 +166,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="#home">RYU <span>KATO</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div style="display:flex;align-items:center;gap:10px;"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language">日本語 / EN</button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button></div>
       <nav class="nav-links" id="nav-links" aria-label="メインナビゲーション">
         <a href="#about">About</a>
         <a href="#research">Research</a>
@@ -397,6 +398,59 @@
     </div>
   </footer>
   <script>
+    const translations = {
+      'メインナビゲーション': 'Main navigation',
+      '研究について': 'Research', '開発実績を見る': 'Projects', '研究と実装を': 'Research and', 'つなぐ。': 'implementation.',
+      '研究アイデアを、実際に動くシステムへ。': 'Turning research ideas into working systems.',
+      'ロボティクスと生産システムの接点に関心を持ち、': 'I am interested in the intersection of robotics and production systems, ',
+      '自律工場に適した生産管理システムや、ROS 2を用いたロボットシステムの開発に取り組んでいます。': 'and work on production management for autonomous factories and robot systems using ROS 2.',
+      '生産管理システムの研究': 'Production management research', 'ロボットシステム開発': 'Robot system development', '@Home Beginner League・総合3位': '@Home Beginner League · 3rd place overall',
+      '何を、どの順序で、どの設備や資材を使って実行するかを管理する仕組みも重要だと考えています。': 'it is also important to manage what should be done, in what order, and which equipment and materials should be used.',
+      'ロボットが現場で働くためには、ロボット自身の動作だけでなく、': 'For robots to work on a factory floor, it is important to manage not only their motions, ',
+      '現在は、自律工場に適した生産管理システムの構築をテーマに、': 'My current research focuses on production management for autonomous factories. ',
+      '製造オーダーや工程、資材・設備などの情報を統合し、ロボット側の実行計画につなぐ仕組みを検討・開発しています。': 'I am developing a way to integrate manufacturing orders, processes, materials, and equipment information and pass it to the robot execution-planning layer.',
+      '自律工場に適した': 'Production Management for', '生産管理システムの構築': 'Autonomous Factories',
+      '製造要求に応じて工程や作業内容を整理し、ロボット群が実行するための計画につなぐ生産管理の仕組みを目指しています。': 'I am exploring production management that organizes processes and work according to manufacturing orders and connects them to plans for robot teams.',
+      '製造オーダーから、実行計画の一歩手前までをつなぐ': 'Connecting manufacturing orders to the step before execution planning',
+      '製品や製造オーダーに応じて工程を生成・選択し、資材・設備・作業場所などの情報を統合した作業リストを構成する仕組みを検討しています。': 'I am exploring how to select or generate processes based on products and orders, then compile work lists integrating materials, equipment, and work locations.',
+      '生産管理システムがロボットの動作そのものを生成するのではなく、': 'Rather than generating robot motions itself, the production management system ',
+      '下位のPlannerが実行計画を生成できるよう、必要な作業情報を整理して渡すことに焦点を当てています。': 'organizes and passes the work information needed by the lower-level Planner to generate execution plans.',
+      '※ 研究は開発・検証中です。実験結果や公開可能な図・動画は、準備ができ次第追加します。': '* Research and validation are ongoing. Results and shareable diagrams or videos will be added when available.',
+      '製造オーダー': 'Manufacturing order', '製品・数量・納期など': 'Product, quantity, due date', '生産管理システム': 'Production management system', '工程・資材・設備・作業リストの統合': 'Processes, materials, equipment, and work lists', 'ロボットの実行計画を生成': 'Generates robot execution plans', 'ロボット・設備': 'Robots and equipment', '作業の実行と状態フィードバック': 'Work execution and status feedback',
+      '研究と競技を通して取り組んできた開発テーマ。': 'Development projects from research and robotics competitions.',
+      '自律工場向け生産管理システム': 'Production Management for Autonomous Factories', '製造オーダーやBOM、工程・資材情報を扱い、ロボット側に渡す作業リストへつなぐ仕組みを開発。': 'Developing a system that connects manufacturing orders, BOMs, processes, and material information to work lists for the robot side.',
+      'Odooを用いた製造情報の管理・参照': 'Managing and retrieving manufacturing data with Odoo', 'PythonによるAPI連携とデータ処理': 'API integration and data processing with Python', '生産管理層とPlannerの役割分担を設計': 'Designing clear roles for production management and the Planner',
+      '家庭環境で活動するサービスロボットの競技にチームで参加。物体認識を中心に開発に取り組みました。': 'Participated in a service-robot competition with a team, focusing on object recognition.', 'ROS 2ベースの物体認識': 'ROS 2-based object recognition', 'OpenCV、YOLO、Open3Dなどを活用': 'Using OpenCV, YOLO, Open3D, and other tools', 'チームでの開発・タスク分担': 'Team development and task allocation',
+      'ロボットの移動、位置推定、ナビゲーションの仕組みを理解し、実機・シミュレーション環境で検証。': 'Exploring robot movement, localization, and navigation in real and simulated environments.', 'ROS 2のTopic・Actionなどの調査': 'Exploring ROS 2 topics and actions', 'ナビゲーション動作とフィードバックの確認': 'Testing navigation and feedback', 'ログや可視化ツールを用いた問題分析': 'Analyzing issues using logs and visualization tools',
+      '統合システムのデモ開発': 'Integrated System Demonstration', '製造オーダーと、ロボット・加工設備による作業の対応関係を確認するデモ環境を構築。': 'Built a demo environment to validate the relationship between manufacturing orders and tasks performed by robots and processing equipment.', '製造情報の入力から作業リスト作成までの連携': 'Connecting manufacturing data input to work-list creation', 'ロボット・設備の実行側との接続を検証': 'Testing integration with robot and equipment execution systems', 'デモ映像・説明資料による成果の可視化': 'Presenting results through demo videos and explanatory materials',
+      '競技・研究活動を通じて得た経験。': 'Experience gained through competitions and research.', '総合3位': '3rd place overall', 'チームでサービスロボットの開発に取り組み、物体認識機能を中心に開発・検証を担当しました。': 'Worked with a team to develop a service robot, focusing on developing and testing object-recognition features.', '研究プロジェクトのデモ展示': 'Research project demonstration', '自律工場に関するプロジェクトのデモや研究内容の紹介に参加。製造管理とロボットの連携を伝える取り組みを行いました。': 'Participated in demonstrations and presentations for an autonomous factory project, explaining the connection between production management and robotics.', '大会の公開映像。チームの競技映像は 1:26:39 頃から。': 'Public competition video. Our team appears at around 1:26:39.', '動画の公開元：YouTube。埋め込みが表示されない場合は ': 'Video source: YouTube. If the embedded video does not appear, ', 'YouTubeで視聴': 'watch on YouTube',
+      '学習・開発で使用している技術。習熟度を誇張せず、取り組みの中で更新していきます。': 'Technologies used in learning and development. This list will be updated as I gain experience.', 'ロボットナビゲーション、物体認識、実機デバッグ': 'Robot navigation, object recognition, and real-robot debugging', 'MESの概念、生産オーダー、BOM、工程・資材情報': 'MES concepts, manufacturing orders, BOMs, processes, and materials', 'Odoo API、Docker、システム間連携': 'Odoo API, Docker, and system integration', '競技ロボット開発、タスク分担、デバッグ、成果発表': 'Competition robot development, task allocation, debugging, and presentations',
+      '研究・ロボティクス・共同開発に関するご連絡は、メールまたはGitHubからお願いします。': 'For inquiries about research, robotics, or collaboration, please contact me by email or through GitHub.', 'メールを送る': 'Email me', 'ページの先頭へ': 'Back to top'
+    };
+    const originalTextNodes = [];
+    let currentLang = 'ja';
+    const languageButton = document.getElementById('language-toggle');
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.parentElement && !node.parentElement.closest('script, style, button.language-toggle')) {
+        originalTextNodes.push({ node, original: node.nodeValue });
+      }
+    }
+    languageButton.addEventListener('click', () => {
+      currentLang = currentLang === 'ja' ? 'en' : 'ja';
+      document.documentElement.lang = currentLang;
+      originalTextNodes.forEach(item => {
+        let value = item.original;
+        if (currentLang === 'en') {
+          for (const [ja, en] of Object.entries(translations)) value = value.split(ja).join(en);
+        }
+        item.node.nodeValue = value;
+      });
+      languageButton.textContent = currentLang === 'ja' ? '日本語 / EN' : 'EN / 日本語';
+      languageButton.setAttribute('aria-label', currentLang === 'ja' ? 'Switch language to English' : 'Switch language to Japanese');
+    });
+
     const menuButton = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     menuButton.addEventListener('click', () => {
